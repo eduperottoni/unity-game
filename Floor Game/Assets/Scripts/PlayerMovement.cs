@@ -9,9 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float movementSpeed = 6f;
     [SerializeField] float jumpForce = 5f;
 
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask ground;
+
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
+        anim = gameObject.GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -23,9 +29,21 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
+
+        // if (Input.GetKey("up"))
+        // {
+        //     anim.SetInteger("AnimPar", 1);
+        // } else {
+        //     anim.SetInteger("AnimPar", 0);
+        // }
+    }
+    
+    bool IsGrounded()
+    {
+        return Physics.CheckSphere(groundCheck.position, .1f, ground);
     }
 }
