@@ -30,7 +30,6 @@ public class EnemyWaypointFollower : MonoBehaviour
 
     private void _rotateTowardsNextWaypoint()
     {
-        Debug.Log("rotating the enemy...");
         Vector3 directionToTarget = waypoints[currentWaypointIndex].transform.position - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
         transform.rotation = targetRotation; 
