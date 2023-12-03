@@ -1,1 +1,1 @@
-/home/artzmeister/code/ufsc/unity-game/Floor Game
+/home/edu/unity-game/Floor Game
